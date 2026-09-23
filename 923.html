@@ -2,35 +2,27 @@
 <head>
 
 <style>
+
 body {
     background-color: black;
+    margin: 0;
 }
 
-.row {
-    display: flex;
+
+/* 整個網站的範圍 */
+.container {
+    width: 600px;
 }
 
+
+/* 空白 */
 .space {
     height: 25px;
 }
 
-/* 圖片 */
-.x-img {
-    width: 250px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-/* 圖片下面的文字 */
-.click-text {
-    color: white;
-    text-align: center;
-}
 
 /* 最上面的方塊 */
-.box1
-{
+.box1 {
     background-color: lightblue;
     width: 600px;
     height: 100px;
@@ -45,39 +37,16 @@ body {
 .box1 p {
     margin: 2px;
 }
-.box6 {
-    background-color: lightblue;
-    width: 600px;
-    height: 150px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
-.box6 h1,
-.box6 p {
-    margin: 3px;
-}
-/* 下面四個方塊的容器 */
-.box-container {
-    width: 600px;
-
-    display: grid;
-
-    /* 一排兩個 */
-    grid-template-columns: 300px 300px;
-
-    /* 一共兩排 */
-    grid-template-rows: 150px 150px;
-}
-
+/* 圖片區域 */
 .image-area {
     width: 600px;
     text-align: center;
 }
 
+
+/* 圖片 */
 .x-img {
     width: 250px;
     height: auto;
@@ -85,14 +54,40 @@ body {
     margin: 0 auto;
 }
 
+
+/* 圖片下面的文字 */
 .click-text {
     color: white;
     text-align: center;
 }
-/* box2 ~ box5 */
 
+
+/* 四個方塊 */
+.box-container {
+    width: 600px;
+
+    display: grid;
+
+    grid-template-columns: 300px 300px;
+    grid-template-rows: 150px 150px;
+}
+
+
+/* 左邊方塊 */
+.box2,
+.box4 {
+    background-color: lightgreen;
+
+    width: 300px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 右邊方塊 */
 .box3,
-
 .box5 {
     background-color: lightblue;
 
@@ -102,18 +97,9 @@ body {
     display: flex;
     flex-direction: column;
 }
-.box2,
-.box4
- {
-    background-color: lightgreen;
 
-    width: 300px;
-    height: 150px;
 
-    display: flex;
-    flex-direction: column;
-    
-}
+/* 四個方塊文字間距 */
 .box2 h1,
 .box2 p,
 .box3 h1,
@@ -124,6 +110,28 @@ body {
 .box5 p {
     margin: 2px;
 }
+
+
+/* Contact Us */
+.box6 {
+    background-color: lightblue;
+
+    width: 600px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box6 h2,
+.box6 p {
+    margin: 3px;
+}
+
+
+/* 標題顏色 */
 .box6 h2,
 .box2 h2,
 .box3 h2,
@@ -131,89 +139,127 @@ body {
 .box5 h2 {
     color: darkblue;
 }
+
 </style>
 
 </head>
 
+
 <body>
 
+<div class="container">
 
-<!-- 最上面的方塊 -->
-<div class="row">
+
+    <!-- 最上面的方塊 -->
     <div class="box1">
+
         <h1>Happy night</h1>
+
         <p>A night of jazz</p>
+
         <p>7:30PM - 10:30PM</p>
-    </div>
-</div>
 
-
-<div class="space"></div>
-
-
-<!-- 圖片 -->
-<div class="image-area">
-
-    <a href="https://x.com">
-        <img class="x-img"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKJ56kACjLAx9EjZNH0vYRLOJyjfue86I9-d0wpejSTg&s=10">
-    </a>
-
-    <p class="click-text">
-        click the image to this event website
-    </p>
-
-</div>
-
-
-<div class="space"></div>
-
-
-<p class="click-text">
-    click the image to this event website
-</p>
-
-
-<!-- 下面四個方塊 -->
-<div class="box-container">
-
-    <!-- 1 -->
-    <div class="box2">
-        <h2>About the night</h2>
-        <p>Welcome to the midnight show</p>
     </div>
 
-    <!-- 2 -->
-    <div class="box3">
-        <h2>Night highlights</h2>
-        <p>live band</p>
-        <p>the queen</p>
+
+    <div class="space"></div>
+
+
+    <!-- 圖片區域 -->
+    <div class="image-area">
+
+        <a href="https://x.com">
+
+            <img
+                class="x-img"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKJ56kACjLAx9EjZNH0vYRLOJyjfue86I9-d0wpejSTg&s=10"
+            >
+
+        </a>
+
+
+        <p class="click-text">
+
+            click the image to this event website
+
+        </p>
+
     </div>
 
-    <!-- 3 -->
-    <div class="box4">
-        <h2>To night program</h2>
-        <p>7:30PM - 8:30 live jazz</p>
-        <p>9:00PM - 10:30PM rhythm and blues jam</p>
+
+    <div class="space"></div>
+
+
+    <!-- 四個方塊 -->
+    <div class="box-container">
+
+
+        <!-- 左上 -->
+        <div class="box2">
+
+            <h2>About the night</h2>
+
+            <p>Welcome to the midnight show</p>
+
+        </div>
+
+
+        <!-- 右上 -->
+        <div class="box3">
+
+            <h2>Night highlights</h2>
+
+            <p>live band</p>
+
+            <p>the queen</p>
+
+        </div>
+
+
+        <!-- 左下 -->
+        <div class="box4">
+
+            <h2>To night program</h2>
+
+            <p>7:30PM - 8:30 live jazz</p>
+
+            <p>9:00PM - 10:30PM rhythm and blues jam</p>
+
+        </div>
+
+
+        <!-- 右下 -->
+        <div class="box5">
+
+            <h2>Tickets</h2>
+
+            <p>Adult $700</p>
+
+            <p>Kid $500</p>
+
+        </div>
+
+
     </div>
 
-    <!-- 4 -->
-    <div class="box5">
-        <h2>Tickets</h2>
-        <p>Adult $700</p>
-        <p>Kid $500</p>
-    </div>
 
-</div>
+    <div class="space"></div>
 
-<div class="space"></div>
 
-<div class="row">
+    <!-- 最下面 -->
     <div class="box6">
+
         <h2>Contact Us</h2>
-        <p>a night of jazz Club </p>
-        <p>87 yellow note lane Taipei </p>
+
+        <p>a night of jazz Club</p>
+
+        <p>87 yellow note lane Taipei</p>
+
     </div>
+
+
 </div>
+
+
 </body>
 </html>
