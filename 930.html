@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+
+    <style>
+        /* 導覽列 */
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #00b500;
+            width: 650px;
+        }
+
+        .navbar li a {
+            display: block;
+            padding: 12px 18px;
+
+            color: white;
+            background-color: #00b500;
+
+            /* 白色波浪底線 */
+            text-decoration-line: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: white;
+        }
+
+        /* 滑鼠移上去 */
+        .navbar li a:hover {
+            background-color: gray;
+        }
+
+        /* 目前所在的頁面 */
+        .navbar li a.active {
+            background-color: #222;
+        }
+
+
+        /* 下面的清單 */
+        .food-list {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 上面的導覽列 -->
+    <ul class="navbar">
+        <li><a href="">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact</a></li>
+
+        <!-- Schedule目前被選中 -->
+        <li><a href="#" class="active">Schedule</a></li>
+
+        <li><a href="#">About</a></li>
+    </ul>
+
+
+    <!-- 下面的 unordered list -->
+    <ul class="food-list">
+        <li>Mousses</li>
+
+        <li>
+            Pastries
+
+            <ul>
+                <li>Croissant</li>
+                <li>Mille-feuille</li>
+                <li>Palmier</li>
+                <li>Profiteroles</li>
+            </ul>
+        </li>
+
+        <li>Tarts</li>
+    </ul>
+
+</body>
+
+</html>
