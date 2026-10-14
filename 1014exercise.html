@@ -1,0 +1,57 @@
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        .container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #4D8DBA;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .container:hover .overlay {
+            opacity: 1;
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h2> Images test</h2>
+
+    <div class="container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb92CjXX6GH78BZ6Jb_zTzbTQtskWYzHXa3pvkzawzSg&s=10"
+             alt="Avatar">
+
+        <div class="overlay">
+            <div class="text">its lion</div>
+        </div>
+    </div>
+</body>
+</html>
