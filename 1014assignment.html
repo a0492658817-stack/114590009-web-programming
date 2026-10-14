@@ -1,0 +1,416 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokyo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 上方導覽列 */
+        .topbar {
+            background-color: white;
+        }
+        .topbar .page {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 8%;
+        }
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        /* 右上角選單 */
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav a {
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+        .nav a:hover {
+            color: #4D8DBA;
+        }
+
+        /* 主視覺區域 */
+        .hero {
+            position: relative;
+            height: 450px;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWpTwWHQ-1dpva1xpRMywLm0MpKU3HjMLqzpv7UGKzMQ&s=10");
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 深色遮罩 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* 圖片上的文字 */
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translateY(-50%);
+            color: white;
+        }
+        .subtitle {
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+        .hero-text h1 {
+            font-size: 60px;
+            line-height: 1.1;
+            margin: 20px 0;
+            max-width: 450px;
+        }
+        .line {
+            width: 40px;
+            height: 2px;
+            background-color: white;
+        }
+        .hero-text p {
+            max-width: 350px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ===== 下半部介紹區域 ===== */
+        .intro {
+            padding: 70px 8%;
+            background-color: white;
+        }
+
+        /* THE JOURNEY */
+        .intro-label {
+            font-size: 10px;
+            color: #999;
+            letter-spacing: 3px;
+        }
+
+        /* 下半部大標題 */
+        .intro h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: normal;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* 左邊文字 + 右邊圖片 */
+        .intro-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        /* 左邊文字 */
+        .intro-text {
+            flex: 1;
+        }
+        .intro-text h4 {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #777;
+        }
+        .intro-text p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #777;
+        }
+
+        /* 右邊圖片 */
+        .intro-image {
+            flex: 1;
+        }
+        .intro-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== 新增：Slow down 區域 ===== */
+        .story-section {
+            max-width: 1100px;
+            margin: 80px auto 120px;
+            padding: 0 20px;
+        }
+        .section-number {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #999;
+        }
+        .story-section h2,
+        .gallery-section h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: normal;
+            margin: 20px 0;
+        }
+
+        /* 左邊圖片 + 右邊文字 */
+        .story-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .story-content img {
+            width: 45%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .story-text {
+            flex: 1;
+        }
+        .story-text h4 {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #777;
+            margin-top: 0;
+        }
+        .story-text p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 新增：三張照片區域 ===== */
+        .gallery-section {
+            max-width: 1100px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .gallery-header p {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* 三張圖片排列 */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .photo {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 圖片覆蓋效果 */
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(88, 103, 222, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        /* 滑鼠移到圖片上 */
+        .photo:hover .photo-overlay {
+            opacity: 1;
+        }
+        .photo-overlay p {
+            color: white;
+            font-size: 20px;
+        }
+        .gallery-footer {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 15px;
+        }
+
+    </style>
+
+</head>
+
+<body id="top">
+
+    <!-- 上方導覽列 -->
+    <header class="topbar">
+        <div class="page">
+            <a class="brand" href="#top">TOKYO.</a>
+            <ul class="nav">
+                <li><a href="#discover">Discover</a></li>
+                <li><a href="#neighborhoods">Neighborhoods</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 主視覺區域 -->
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-text">
+            <div class="subtitle">
+                A VISUAL JOURNEY THROUGH JAPAN
+            </div>
+            <h1>A City of<br>Contrasts.</h1>
+            <div class="line"></div>
+            <p>
+                Quiet temples, electric streets,
+                and little moments in between.
+                Discover a different side of Tokyo.
+            </p>
+        </div>
+    </section>
+
+    <!-- 第一個介紹區域 -->
+    <section class="intro" id="discover">
+        <div class="intro-label">
+            THE JOURNEY
+        </div>
+        <h2>Where tradition meets tomorrow.</h2>
+        <div class="intro-content">
+            <div class="intro-text">
+                <h4>MORE THAN A DESTINATION</h4>
+                <p>
+                    Tokyo is a city that never stops surprising you.
+                    One moment, you are surrounded by bright signs
+                    and busy crossings. A few streets away,
+                    you might discover a quiet shrine hidden
+                    between modern buildings.
+                </p>
+                <p>
+                    What makes Tokyo special is the way old
+                    and new exist side by side.
+                    Every neighborhood has its own rhythm,
+                    atmosphere, and story to tell.
+                </p>
+                <p>
+                    "The best way to explore Tokyo
+                    is to get a little lost."
+                </p>
+            </div>
+            <div class="intro-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-L0msGBELw3rZZe-s2wRPsSXJf2JLVZro-Nomfu-2mA&s=10"
+                     alt="fuji">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 新增：第二個介紹區域 ===== -->
+    <section class="story-section" id="neighborhoods">
+        <p class="section-number">02 / INTRODUCTION</p>
+        <h2>Slow down. Look closer.</h2>
+        <div class="story-content">
+
+            <!-- 左邊圖片 -->
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=900"
+                 alt="Japan street">
+
+            <!-- 右邊文字 -->
+            <div class="story-text">
+                <h4>THE QUIETER SIDE</h4>
+                <p>
+                    Beyond the crowded crossings and famous
+                    landmarks, Tokyo is full of beautiful corners.
+                    Small cafes, traditional shops, and narrow
+                    streets invite visitors to take their time.
+                </p>
+                <p>
+                    Spend an afternoon walking without a strict
+                    plan. Notice the details: wooden doors,
+                    warm lanterns, tiny gardens, and the everyday
+                    life happening all around you.
+                </p>
+                <p>
+                    Sometimes the most memorable places are
+                    the ones you never planned to visit.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 新增：三張照片區域 ===== -->
+    <section class="gallery-section" id="gallery">
+        <p class="section-number">03 / PHOTO STORIES</p>
+        <div class="gallery-header">
+            <h2>Tokyo in three frames.</h2>
+            <p>
+                Move your mouse over each photograph to<br>
+                reveal the story behind the image.
+            </p>
+        </div>
+
+        <!-- 三張圖片 -->
+        <div class="gallery">
+
+            <!-- 第一張 -->
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=700"
+                     alt="Tokyo city">
+                <div class="photo-overlay">
+                    <p>Tokyo City</p>
+                </div>
+            </div>
+
+            <!-- 第二張 -->
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=700"
+                     alt="Mount Fuji">
+                <div class="photo-overlay">
+                    <p>Beautiful Scenery</p>
+                </div>
+            </div>
+
+            <!-- 第三張 -->
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=700"
+                     alt="Night view">
+                <div class="photo-overlay">
+                    <p>Tokyo at Night</p>
+                </div>
+            </div>
+        </div>
+        <p class="gallery-footer">
+            Hover over a photo to see Tokyo in another light.
+        </p>
+    </section>
+
+</body>
+</html>
