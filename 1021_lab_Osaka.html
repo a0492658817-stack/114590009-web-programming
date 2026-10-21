@@ -1,0 +1,573 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osaka</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 上方導覽列 */
+        .topbar {
+            background-color: white;
+        }
+        .topbar .page {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 8%;
+        }
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        /* 右上角選單 */
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav a {
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+        .nav a:hover {
+            color: #4D8DBA;
+        }
+
+        /* 主視覺區域 */
+        .hero {
+            position: relative;
+            height: 450px;
+            background-image: url("https://byfood.b-cdn.net/api/public/assets/9503/content");
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 深色遮罩 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* 圖片上的文字 */
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translateY(-50%);
+            color: white;
+        }
+        .subtitle {
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+        .hero-text h1 {
+            font-size: 60px;
+            line-height: 1.1;
+            margin: 20px 0;
+            max-width: 450px;
+        }
+        .line {
+            width: 40px;
+            height: 2px;
+            background-color: white;
+        }
+        .hero-text p {
+            max-width: 350px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ===== 下半部介紹區域 ===== */
+        .intro {
+            padding: 70px 8%;
+            background-color: white;
+        }
+
+        /* THE JOURNEY */
+        .intro-label {
+            font-size: 10px;
+            color: #999;
+            letter-spacing: 3px;
+        }
+
+        /* 下半部大標題 */
+        .intro h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: normal;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* 左邊文字 + 右邊圖片 */
+        .intro-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        /* 左邊文字 */
+        .intro-text {
+            flex: 1;
+        }
+        .intro-text h4 {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #777;
+        }
+        .intro-text p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #777;
+        }
+
+        /* 右邊圖片 */
+        .intro-image {
+            flex: 1;
+        }
+        .intro-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== 新增：Slow down 區域 ===== */
+        .story-section {
+            max-width: 1100px;
+            margin: 80px auto 120px;
+            padding: 0 20px;
+        }
+        .section-number {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #999;
+        }
+        .story-section h2,
+        .gallery-section h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: normal;
+            margin: 20px 0;
+        }
+
+        /* 左邊圖片 + 右邊文字 */
+        .story-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        .story-content img {
+            width: 45%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .story-text {
+            flex: 1;
+        }
+        .story-text h4 {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #777;
+            margin-top: 0;
+        }
+        .story-text p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 新增：三張照片區域 ===== */
+        .gallery-section {
+            max-width: 1100px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .gallery-header p {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* 三張圖片排列 */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .photo {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 圖片覆蓋效果 */
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(88, 103, 222, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        /* 滑鼠移到圖片上 */
+        .photo:hover .photo-overlay {
+            opacity: 1;
+        }
+        .photo-overlay p {
+            color: white;
+            font-size: 20px;
+        }
+        .gallery-footer {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 15px;
+        }
+
+
+        /* Part 1 & Part 2 tables, scoped to prevent affecting Tokyo page */
+        .assignment-part {
+            max-width: 1100px;
+            margin: 0 auto 70px;
+            padding: 20px;
+        }
+        .assignment-part h2 {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            font-weight: normal;
+            margin: 0 0 24px;
+        }
+        .assignment-part table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .assignment-part th, .assignment-part td {
+            border: 1px solid black;
+            padding: 8px;
+            font-weight: bold;
+        }
+        .assignment-part th {
+            background-color: black;
+            color: white;
+        }
+        .assignment-part tr:nth-child(odd) td { background-color: #dddddd; }
+        .assignment-part tr:nth-child(even) td { background-color: white; }
+        .assignment-part td.business { background-color: lightgreen !important; }
+        .assignment-part td.physics { background-color: orange !important; }
+        .assignment-part td.applied { background-color: lightblue !important; }
+
+        /* Part 1 - travel planner style */
+        .planner-section {
+            max-width: 1100px;
+            margin: 0 auto 70px;
+            padding: 40px 20px 20px;
+            background-color: #ffffff;
+        }
+        .planner-kicker {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #8a8a8a;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .planner-section h2 {
+            font-family: Georgia, serif;
+            font-size: 54px;
+            font-weight: normal;
+            color: #222;
+            margin: 0 0 14px;
+        }
+        .planner-subtitle,
+        .planner-note {
+            font-size: 13px;
+            color: #777;
+            margin: 0 0 28px;
+        }
+        .planner-budget-title {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            font-weight: normal;
+            color: #333;
+            margin: 42px 0 8px;
+        }
+        .planner-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 10px;
+        }
+        .planner-table th,
+        .planner-table td {
+            border: 1px solid #d9dee3;
+            padding: 14px 18px;
+            font-size: 14px;
+        }
+        .planner-table th {
+            background-color: #16232f;
+            color: white;
+            font-weight: 600;
+        }
+        .planner-table td {
+            color: #555;
+            background-color: #f7f7f7;
+        }
+        .planner-table tr:nth-child(even) td {
+            background-color: #efefef;
+        }
+        .planner-table .emphasis {
+            color: #b46b72;
+            font-weight: 600;
+        }
+
+    </style>
+
+</head>
+
+<body id="top">
+
+    <!-- 上方導覽列 -->
+    <header class="topbar">
+        <div class="page">
+            <a class="brand" href="#top">Osaka.</a>
+            <ul class="nav">
+                <li><a href="#discover">Discover</a></li>
+                <li><a href="#neighborhoods">Neighborhoods</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 主視覺區域 -->
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-text">
+            <div class="subtitle">
+                A VISUAL JOURNEY THROUGH OSAKA
+            </div>
+            <h1>A City of<br>Vibrant Contrasts.</h1>
+            <div class="line"></div>
+            <p>
+                Neon-lit streets, historic castles,
+                and unforgettable street food.
+                Discover the vibrant heart of Osaka.
+            </p>
+        </div>
+    </section>
+
+    <!-- 第一個介紹區域 -->
+    <section class="intro" id="discover">
+        <div class="intro-label">
+            THE JOURNEY
+        </div>
+        <h2>Where tradition meets modern energy.</h2>
+        <div class="intro-content">
+            <div class="intro-text">
+                <h4>MORE THAN A DESTINATION</h4>
+                <p>
+                    Osaka is a city full of life and surprises. 
+                    One moment, you are surrounded by neon lights
+                    and lively streets. 
+                    A few steps away, you might discover a peaceful shrine
+                    hidden between modern buildings.
+                    What makes Osaka special is its unique mix of history, 
+                    food, and entertainment. From Osaka Castle to the bustling
+                    streets of Dotonbori, every corner has something
+                    exciting to explore.
+                </p>
+                <p>
+                    "The best way to experience Osaka is to wander,
+                    taste, and discover."
+                </p>
+            </div>
+            <div class="intro-image">
+                <img src="https://images.openai.com/static-rsc-4/hCvAbJ-Cn_4yZI8dDmTFzb85tv1ZD8Wg8hjXMiMNbJhMIz9Danh0fPmzWnwHX-euVVBw4G6bjb9T6BZn2DCzMrbGkzk8X4QFFn_g3YOOHpV28ljTr6Y2Ky_OMv3yKB8M9wseqUI1-20xYB7izTFh68t_nxH3jyeMgMBy7caDLZnTUo5hLGgflHudYWC-OYV9?purpose=fullsize"
+                     alt="Osaka Castle">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 新增：第二個介紹區域 ===== -->
+    <section class="story-section" id="neighborhoods">
+        <p class="section-number">02 / INTRODUCTION</p>
+        <h2>Slow down. Look closer.</h2>
+        <div class="story-content">
+
+            <!-- 左邊圖片 -->
+            <img src="https://images.openai.com/static-rsc-4/BVy69OgfXg-Tg0po0UdGT9m0HiJvh78dbCpa44RGzg9dy0D5QB1dlgbfm6kLGX3PjvpdtOW1j0BbeHJ7ndC5_KuWOyB5e-9cMxjjUy2iw2vsF4zii782mSByFKNI4Y_3AT8Cw1qynLSc2ANhYk41Z7Oe-YP3VPLWbNbuPB3d8k0EZaJmicDGXPtUe6tEFWTr?purpose=fullsize"
+                 alt="Hozenji Yokocho">
+
+            <!-- 右邊文字 -->
+            <div class="story-text">
+                <h4>THE QUIETER SIDE</h4>
+                <p>
+                    Beyond the neon lights and busy streets, 
+                    Osaka is full of peaceful hidden gems. Small cafes, 
+                    traditional markets, and quiet neighborhoods
+                    invite visitors to slow down and explore.
+                </p>
+                <p>
+                    Spend an afternoon wandering through the charming streets
+                    of Nakazakicho. Notice the details: old wooden houses,
+                    cozy coffee shops, narrow alleys, and the everyday life
+                     happening all around you.
+                </p>
+                <p>
+                    Sometimes the most unforgettable moments in Osaka
+                    are found away from the crowds.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 新增：三張照片區域 ===== -->
+    <section class="gallery-section" id="gallery">
+        <p class="section-number">03 / PHOTO STORIES</p>
+        <div class="gallery-header">
+            <h2>Osaka  in three frames.</h2>
+            <p>
+                Move your mouse over each photograph to<br>
+                reveal the story behind the image.
+            </p>
+        </div>
+
+        <!-- 三張圖片 -->
+        <div class="gallery">
+
+            <!-- 第一張 -->
+            <div class="photo">
+                <img src="https://images.openai.com/static-rsc-4/ML-hdhpCCqcv2H1J56oRKhmgUbp-TOmGFLLWh5E2svjMvcnXn5xidtJvOcgncSCiwMJAXRGPh0ENkwRoja2g3noC1pABWunD9mn11w-3xQevpCoxrTCJgdcL5egGnONIKanPQKrAX_wIyOWVWHlHULmkKp5LfBYlM8pW1zh8unJX3wlkqCRPmHUVkctkGYsq?purpose=fullsize"
+                     alt="Dotonbori">
+                <div class="photo-overlay">
+                    <p>DOTONBORI</p>
+                </div>
+            </div>
+
+            <!-- 第二張 -->
+            <div class="photo">
+                <img src="https://images.openai.com/static-rsc-4/bZDgVTaTb7KHVwgiK_2aPlXrjzq5QcS1ehx-v5GMNCzs9YjLtYaSxmS0eWpq-gNVT99OXKdmMGKq6u2m0YuupkaIcrQD2MLHIv57ejPm3QH407vNPEEnB9_oXB5rTV6nHeMO8mMfodvvuwhMNjlfYlQ6e13UAURE-wf6RTESF-s?purpose=inline"
+                     alt="Osaka Castle">
+                <div class="photo-overlay">
+                    <p>Osaka Castle</p>
+                </div>
+            </div>
+
+            <!-- 第三張 -->
+            <div class="photo">
+                <img src="https://images.openai.com/static-rsc-4/csJCPsqI90h0hLzUx4nzCD7wK2Lddi7Z27xhc7gwH1OgpK7rijogUvs85NBhg8ZVlJXSpWxPkqdsjSfiSCu2vyVX-BARIW8RQymLYA_lBOJ2lwy6Ok_5QMOQy1rbg9EpEQwFGm8RGJ2CFRvWtnxHai2EEzT1YKnWrxge9GP-IWg?purpose=inline"
+                     alt="Shinsekai">
+                <div class="photo-overlay">
+                    <p>Shinsekai</p>
+                </div>
+            </div>
+        </div>
+        <p class="gallery-footer">
+            Hover over a photo to see Tokyo in another light.
+        </p>
+    </section>
+
+    <!-- ===== Part 1: updated to match the provided layout ===== -->
+    <section class="planner-section" id="part1">
+        <div class="planner-kicker">03 / TRAVEL PLANNER</div>
+        <h2>Three Days in Osaka.</h2>
+        <p class="planner-subtitle">Plan your mornings, afternoons, and evenings with this simple three-day itinerary.</p>
+
+        <table class="planner-table">
+            <tr>
+                <th>Day</th>
+                <th>Morning</th>
+                <th>Afternoon</th>
+                <th>Evening</th>
+            </tr>
+            <tr>
+                <td>Day 1</td>
+                <td>Osaka Castle</td>
+                <td>Shinsaibashi</td>
+                <td>Dotonbori</td>
+            </tr>
+            <tr>
+                <td>Day 2</td>
+                <td>Kuromon Market</td>
+                <td>Namba</td>
+                <td>Shinsekai</td>
+            </tr>
+            <tr>
+                <td>Day 3</td>
+                <td class="emphasis" colspan="2">Universal Studios Japan</td>
+                <td>Universal CityWalk</td>
+            </tr>
+        </table>
+
+        <h3 class="planner-budget-title">Travel Budget</h3>
+        <p class="planner-note">A sample daily budget for transportation and meals in Osaka.</p>
+
+        <table class="planner-table">
+            <tr>
+                <th>Category</th>
+                <th>Item</th>
+                <th>Estimated Cost</th>
+            </tr>
+            <tr>
+                <td rowspan="2">Transportation</td>
+                <td>Metro</td>
+                <td>¥800</td>
+            </tr>
+            <tr>
+                <td>Train</td>
+                <td>¥600</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Food</td>
+                <td>Lunch</td>
+                <td>¥1200</td>
+            </tr>
+            <tr>
+                <td>Dinner</td>
+                <td>¥2000</td>
+            </tr>
+        </table>
+    </section>
+
+
+</body>
+</html>
